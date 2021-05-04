@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Author: Daniel D. Adriano [daniel.dadriano@gmail.com]
+
+========================================================================================
+The MIT License (MIT)
+
+Copyright (c) 2016 Lara CODECA [codeca@gmail.com], VehicularLab [vehicular-lab@uni.lu]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+========================================================================================
+
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <trip id="brokenVehicle1" type="passenger1" depart="0.00" from="-31622#4" to="-31622#10"/>
+    <trip id="brokenVehicle2" type="passenger1" depart="0.10" from="-31622#4" to="-31622#10"/>
+    <trip id="brokenVehicle3" type="passenger1" depart="0.20" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle0" type="passenger2a" depart="0" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle1" type="passenger2a" depart="1" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle2" type="passenger2a" depart="2" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle3" type="passenger2a" depart="3" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle4" type="passenger2a" depart="4" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle5" type="passenger2a" depart="5" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle6" type="passenger2a" depart="6" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle7" type="passenger2a" depart="7" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle8" type="passenger2a" depart="8" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle9" type="passenger2a" depart="9" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle10" type="passenger2a" depart="10" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle11" type="passenger2a" depart="11" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle12" type="passenger2a" depart="12" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle13" type="passenger2a" depart="13" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle14" type="passenger2a" depart="14" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle15" type="passenger2a" depart="15" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle16" type="passenger2a" depart="16" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle17" type="passenger2a" depart="17" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle18" type="passenger2a" depart="18" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle19" type="passenger2a" depart="19" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle20" type="passenger2a" depart="20" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle21" type="passenger2a" depart="21" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle22" type="passenger2a" depart="22" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle23" type="passenger2a" depart="23" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle24" type="passenger2a" depart="24" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle25" type="passenger2a" depart="25" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle26" type="passenger2a" depart="26" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle27" type="passenger2a" depart="27" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle28" type="passenger2a" depart="28" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle29" type="passenger2a" depart="29" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle30" type="passenger2a" depart="30" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle31" type="passenger2a" depart="31" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle32" type="passenger2a" depart="32" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle33" type="passenger2a" depart="33" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle34" type="passenger2a" depart="34" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle35" type="passenger2a" depart="35" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle36" type="passenger2a" depart="36" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle37" type="passenger2a" depart="37" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle38" type="passenger2a" depart="38" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle39" type="passenger2a" depart="39" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle40" type="passenger2a" depart="40" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle41" type="passenger2a" depart="41" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle42" type="passenger2a" depart="42" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle43" type="passenger2a" depart="43" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle44" type="passenger2a" depart="44" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle45" type="passenger2a" depart="45" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle46" type="passenger2a" depart="46" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle47" type="passenger2a" depart="47" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle48" type="passenger2a" depart="48" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle49" type="passenger2a" depart="49" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle50" type="passenger2a" depart="50" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle51" type="passenger2a" depart="51" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle52" type="passenger2a" depart="52" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle53" type="passenger2a" depart="53" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle54" type="passenger2a" depart="54" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle55" type="passenger2a" depart="55" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle56" type="passenger2a" depart="56" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle57" type="passenger2a" depart="57" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle58" type="passenger2a" depart="58" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle59" type="passenger2a" depart="59" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle60" type="passenger2a" depart="60" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle61" type="passenger2a" depart="61" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle62" type="passenger2a" depart="62" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle63" type="passenger2a" depart="63" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle64" type="passenger2a" depart="64" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle65" type="passenger2a" depart="65" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle66" type="passenger2a" depart="66" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle67" type="passenger2a" depart="67" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle68" type="passenger2a" depart="68" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle69" type="passenger2a" depart="69" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle70" type="passenger2a" depart="70" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle71" type="passenger2a" depart="71" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle72" type="passenger2a" depart="72" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle73" type="passenger2a" depart="73" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle74" type="passenger2a" depart="74" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle75" type="passenger2a" depart="75" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle76" type="passenger2a" depart="76" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle77" type="passenger2a" depart="77" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle78" type="passenger2a" depart="78" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle79" type="passenger2a" depart="79" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle80" type="passenger2a" depart="80" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle81" type="passenger2a" depart="81" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle82" type="passenger2a" depart="82" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle83" type="passenger2a" depart="83" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle84" type="passenger2a" depart="84" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle85" type="passenger2a" depart="85" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle86" type="passenger2a" depart="86" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle87" type="passenger2a" depart="87" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle88" type="passenger2a" depart="88" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle89" type="passenger2a" depart="89" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle90" type="passenger2a" depart="90" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle91" type="passenger2a" depart="91" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle92" type="passenger2a" depart="92" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle93" type="passenger2a" depart="93" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle94" type="passenger2a" depart="94" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle95" type="passenger2a" depart="95" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle96" type="passenger2a" depart="96" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle97" type="passenger2a" depart="97" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle98" type="passenger2a" depart="98" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle99" type="passenger2a" depart="99" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle100" type="passenger2a" depart="100" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle101" type="passenger2a" depart="101" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle102" type="passenger2a" depart="102" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle103" type="passenger2a" depart="103" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle104" type="passenger2a" depart="104" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle105" type="passenger2a" depart="105" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle106" type="passenger2a" depart="106" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle107" type="passenger2a" depart="107" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle108" type="passenger2a" depart="108" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle109" type="passenger2a" depart="109" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle110" type="passenger2a" depart="110" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle111" type="passenger2a" depart="111" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle112" type="passenger2a" depart="112" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle113" type="passenger2a" depart="113" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle114" type="passenger2a" depart="114" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle115" type="passenger2a" depart="115" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle116" type="passenger2a" depart="116" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle117" type="passenger2a" depart="117" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle118" type="passenger2a" depart="118" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle119" type="passenger2a" depart="119" from="-31622#4" to="-31622#10"/>
+
+    <trip id="eeblVehicle120" type="passenger2a" depart="120" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle121" type="passenger2a" depart="121" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle122" type="passenger2a" depart="122" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle123" type="passenger2a" depart="123" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle124" type="passenger2a" depart="124" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle125" type="passenger2a" depart="125" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle126" type="passenger2a" depart="126" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle127" type="passenger2a" depart="127" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle128" type="passenger2a" depart="128" from="-31622#4" to="-31622#10"/>
+    <trip id="eeblVehicle129" type="passenger2a" depart="129" from="-31622#4" to="-31622#10"/>
+
+</routes>

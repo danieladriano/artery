@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Author: Daniel D. Adriano [daniel.dadriano@gmail.com]
+
+========================================================================================
+The MIT License (MIT)
+
+Copyright (c) 2016 Lara CODECA [codeca@gmail.com], VehicularLab [vehicular-lab@uni.lu]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+========================================================================================
+
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <trip id="eeblVehicle" type="passenger2a" depart="0" from="--30256#0" to="-30812"/>
+    <trip id="eeblVehicle2" type="passenger3" depart="0" from="--30256#1" to="-30812"/>
+    <trip id="eeblVehicle3" type="passenger3" depart="0" from="--30256#2" to="-30812"/>
+
+    <trip id="eeblVehicle9" type="passenger2a" depart="0" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle10" type="passenger3" depart="0" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle11" type="passenger3" depart="0" from="--31834#1" to="-30812"/>
+
+    <trip id="eeblVehicle19" type="passenger2a" depart="0" from="--31834#2" to="-30812"/>
+
+    <trip id="brokenVehicle" type="passenger1" depart="1.00" from="--31834#1" to="-30812"/>
+
+    <trip id="eeblVehicle20" type="passenger3" depart="1.00" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle21" type="passenger3" depart="1.05" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle22" type="passenger3" depart="1.15" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle23" type="passenger3" depart="2.00" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle24" type="passenger3" depart="2.05" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle25" type="passenger3" depart="2.15" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle26" type="passenger3" depart="3.00" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle27" type="passenger3" depart="3.05" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle28" type="passenger3" depart="3.15" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle29" type="passenger2a" depart="4" from="--31834#1" to="-30812"/>
+
+    <trip id="eeblVehicle6" type="passenger3" depart="11" from="--31834#2" to="-30812"/>
+    <trip id="eeblVehicle14" type="passenger3" depart="11" from="--31834#2" to="-30812"/>
+
+    <trip id="eeblVehicle7" type="passenger3" depart="12" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle15" type="passenger3" depart="12" from="--31834#1" to="-30812"/>
+    <trip id="eeblVehicle17" type="passenger3" depart="12" from="--31834#1" to="-30812"/>
+
+    <trip id="eeblVehicle8" type="passenger3" depart="13" from="--31834#2" to="-30812"/>
+    <trip id="eeblVehicle16" type="passenger3" depart="13" from="--31834#2" to="-30812"/>
+    <trip id="eeblVehicle18" type="passenger3" depart="13" from="--31834#2" to="-30812"/>
+
+</routes>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<regions>
+    <!-- define regions of interest (RoI) here.
+    Only vehicles entering a RoI will be equipped with a middelware.
+    When leaving the RoI the middlewares are removed again.
+    Leave regions empty to consider the whole scenario as RoI.
+    -->
+
+    <!-- <polygon name="inicio">
+        <point x="10500.00" y="7100.00" />
+        <point x="10800.00" y="7100.00" />
+        <point x="10800.00" y="6800.00" />
+        <point x="10500.00" y="6800.00" />
+    </polygon>
+
+    <polygon name="fim">
+        <point x="3500.00" y="5000.00" />
+        <point x="3500.00" y="4500.00" />
+        <point x="3900.00" y="5000.00" />
+        <point x="3900.00" y="4500.00" />
+    </polygon>
+
+    <polygon name="highway">
+        <point x="4700.00" y="3700.00" />
+        <point x="8600.00" y="3700.00" />
+        <point x="8600.00" y="2600.00" />
+        <point x="4700.00" y="2600.00" />
+    </polygon> -->
+
+</regions>
