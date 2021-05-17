@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Author: Daniel D. Adriano [daniel.dadriano@gmail.com]
+
+========================================================================================
+The MIT License (MIT)
+
+Copyright (c) 2016 Lara CODECA [codeca@gmail.com], VehicularLab [vehicular-lab@uni.lu]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+========================================================================================
+
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <trip id="brokenVehicle1" type="passenger1" depart="0.00" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="brokenVehicle2" type="passenger1" depart="0.10" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="brokenVehicle3" type="passenger1" depart="0.20" departLane="0" from="-31622#4" to="-31622#10"/>
+
+    <trip id="vehicle_0.414" type="passenger2a" depart="0.414" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_0.828" type="passenger2a" depart="0.828" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_1.242" type="passenger2a" depart="1.242" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_1.656" type="passenger2a" depart="1.656" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_2.07" type="passenger2a" depart="2.07" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_2.484" type="passenger2a" depart="2.484" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_2.898" type="passenger2a" depart="2.898" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_3.312" type="passenger2a" depart="3.312" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_3.726" type="passenger2a" depart="3.726" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_4.14" type="passenger2a" depart="4.14" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_4.554" type="passenger2a" depart="4.554" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_4.968" type="passenger2a" depart="4.968" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_5.382" type="passenger2a" depart="5.382" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_5.796" type="passenger2a" depart="5.796" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_6.21" type="passenger2a" depart="6.21" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_6.624" type="passenger2a" depart="6.624" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_7.038" type="passenger2a" depart="7.038" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_7.452" type="passenger2a" depart="7.452" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_7.866" type="passenger2a" depart="7.866" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_8.28" type="passenger2a" depart="8.28" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_8.694" type="passenger2a" depart="8.694" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_9.108" type="passenger2a" depart="9.108" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_9.522" type="passenger2a" depart="9.522" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_9.936" type="passenger2a" depart="9.936" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_10.35" type="passenger2a" depart="10.35" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_10.764" type="passenger2a" depart="10.764" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_11.178" type="passenger2a" depart="11.178" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_11.592" type="passenger2a" depart="11.592" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_12.006" type="passenger2a" depart="12.006" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_12.42" type="passenger2a" depart="12.42" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_12.834" type="passenger2a" depart="12.834" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_13.248" type="passenger2a" depart="13.248" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_13.662" type="passenger2a" depart="13.662" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_14.076" type="passenger2a" depart="14.076" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_14.49" type="passenger2a" depart="14.49" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_14.904" type="passenger2a" depart="14.904" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_15.318" type="passenger2a" depart="15.318" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_15.732" type="passenger2a" depart="15.732" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_16.146" type="passenger2a" depart="16.146" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_16.56" type="passenger2a" depart="16.56" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_16.974" type="passenger2a" depart="16.974" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_17.388" type="passenger2a" depart="17.388" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_17.802" type="passenger2a" depart="17.802" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_18.216" type="passenger2a" depart="18.216" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_18.63" type="passenger2a" depart="18.63" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_19.044" type="passenger2a" depart="19.044" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_19.458" type="passenger2a" depart="19.458" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_19.872" type="passenger2a" depart="19.872" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_20.286" type="passenger2a" depart="20.286" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_20.7" type="passenger2a" depart="20.7" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_21.114" type="passenger2a" depart="21.114" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_21.528" type="passenger2a" depart="21.528" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_21.942" type="passenger2a" depart="21.942" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_22.356" type="passenger2a" depart="22.356" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_22.77" type="passenger2a" depart="22.77" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_23.184" type="passenger2a" depart="23.184" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_23.598" type="passenger2a" depart="23.598" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_24.012" type="passenger2a" depart="24.012" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_24.426" type="passenger2a" depart="24.426" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_24.84" type="passenger2a" depart="24.84" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_25.254" type="passenger2a" depart="25.254" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_25.668" type="passenger2a" depart="25.668" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_26.082" type="passenger2a" depart="26.082" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_26.496" type="passenger2a" depart="26.496" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_26.91" type="passenger2a" depart="26.91" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_27.324" type="passenger2a" depart="27.324" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_27.738" type="passenger2a" depart="27.738" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_28.152" type="passenger2a" depart="28.152" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_28.566" type="passenger2a" depart="28.566" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_28.98" type="passenger2a" depart="28.98" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_29.394" type="passenger2a" depart="29.394" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_29.808" type="passenger2a" depart="29.808" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_30.222" type="passenger2a" depart="30.222" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_30.636" type="passenger2a" depart="30.636" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_31.05" type="passenger2a" depart="31.05" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_31.464" type="passenger2a" depart="31.464" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_31.878" type="passenger2a" depart="31.878" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_32.292" type="passenger2a" depart="32.292" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_32.706" type="passenger2a" depart="32.706" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_33.12" type="passenger2a" depart="33.12" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_33.534" type="passenger2a" depart="33.534" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_33.948" type="passenger2a" depart="33.948" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_34.362" type="passenger2a" depart="34.362" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_34.776" type="passenger2a" depart="34.776" departLane="2" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_35.19" type="passenger2a" depart="35.19" departLane="0" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_35.604" type="passenger2a" depart="35.604" departLane="1" from="-31622#4" to="-31622#10"/>
+    <trip id="vehicle_36.018" type="passenger2a" depart="36.018" departLane="2" from="-31622#4" to="-31622#10"/>
+    
+</routes>

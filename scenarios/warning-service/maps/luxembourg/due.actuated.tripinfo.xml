@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2021-05-04 14:42:32 by Eclipse SUMO GUI Version 1.9.1
+<!-- generated on seg 17 mai 2021 07:44:39 by Eclipse SUMO GUI Version 1.8.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
         <net-file value="maps/luxembourg/lust2.net.xml"/>
-        <route-files value="maps/luxembourg/NewRoutes/new.rou.xml"/>
+        <route-files value="maps/luxembourg/NewRoutes/new.rou_MDensoAlterado.xml"/>
         <additional-files value="maps/luxembourg/vtypes.add.xml"/>
     </input>
 
@@ -37,7 +37,7 @@
     </report>
 
     <traci_server>
-        <remote-port value="37187"/>
+        <remote-port value="52753"/>
     </traci_server>
 
     <random_number>

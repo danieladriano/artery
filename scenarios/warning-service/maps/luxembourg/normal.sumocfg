@@ -10,7 +10,7 @@ Author: Lara CODECA [codeca@gmail.com]
 
     <input>
         <net-file value="lust2.net.xml"/>
-        <route-files value="NewRoutes/new.rou.xml"/>
+        <route-files value="NewRoutes/new.rou_NormalAlterado.xml"/>
         <additional-files value="vtypes.add.xml"/>
     </input>
 
