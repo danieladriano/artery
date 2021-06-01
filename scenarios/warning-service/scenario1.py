@@ -8,7 +8,7 @@ def createStories(board):
     condition1 = storyboard.AndCondition(timeCondition1, carSetCondition1)
     story1 = storyboard.Story(condition1, [signalEffect1])
 
-    timeCondition2 = storyboard.TimeCondition(timeline.seconds(350))
+    timeCondition2 = storyboard.TimeCondition(timeline.seconds(450))
     carSetCondition2 = storyboard.CarSetCondition("brokenVehicle1")
     signalEffect2 = storyboard.SignalEffect("scenario_1")
     condition2 = storyboard.AndCondition(timeCondition2, carSetCondition2)

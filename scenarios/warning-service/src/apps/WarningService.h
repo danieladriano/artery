@@ -48,6 +48,7 @@ class WarningService: public artery::ItsG5Service {
         void sendWarningValidationMessage(int);
         void receiveTable(const UpdateTableMessage*);
         void receiveWarning(const WarningMessage*);
+        void writeLog(std::string);
 };
 
 #endif /* WARNINGSERVICE_H_ */

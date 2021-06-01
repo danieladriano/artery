@@ -21,6 +21,7 @@
 
 using namespace omnetpp;
 using namespace vanetza;
+using namespace std;
 
 // register signal to recieve signal from Storyboard
 static const simsignal_t storyboardSignal = cComponent::registerSignal("StoryboardSignal");
@@ -44,6 +45,25 @@ void WarningService::initialize() {
 }
 
 void WarningService::finish() {
+}
+
+inline string getCurrentDateTime( string s ){
+    time_t now = time(0);
+    struct tm  tstruct;
+    char  buf[80];
+    tstruct = *localtime(&now);
+    if(s=="now")
+        strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
+    else if(s=="date")
+        strftime(buf, sizeof(buf), "%Y-%m-%d", &tstruct);
+    return string(buf);
+};
+
+void WarningService::writeLog(string message){
+    ofstream logFile("./logs/warning_log_" + getCurrentDateTime("date") + ".txt", std::ios_base::out | std::ios_base::app);
+    string now = getCurrentDateTime("now");
+    logFile << now << '\t' << message << endl;
+    logFile.close();
 }
 
 void WarningService::handleMessage(cMessage* msg) {
@@ -70,16 +90,16 @@ void WarningService::sendObuBeacon() {
 void WarningService::trigger() {
     Enter_Method("WarningService trigger");
 
-    if (received && initialTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#5-AddedOffRampEdge") {
+    if (received && initialTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31760") {
         initialTime = simTime().dbl();
-        printf("%s Alterou trajeto %f\n", mVehicleController->getVehicleId().c_str(), initialTime);
+        writeLog(string("Alterou trajeto\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(initialTime));
     }
     if (received && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#10-AddedOnRampEdge" && initialTime > 0) {
         double travelTime = simTime().dbl();
         travelTime = travelTime - initialTime;
         initialTime = -1;
         emit(auxTravelTime, travelTime);
-        printf("%s TravelTime %f \n", mVehicleController->getVehicleId().c_str(), travelTime);
+        writeLog(string("TravelTime\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(travelTime));
     }
     if (withReputation) {
         if ((obuBeacon == false) and (simTime() >= 330) and (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#4") and (mVehicleController->getPosition().x.value() < 8600)) {
@@ -89,36 +109,36 @@ void WarningService::trigger() {
         }
     }
 
-    if (mVehicleController->getVehicleId() == "vehicle_28.566") {
+    // if (mVehicleController->getVehicleId() == "vehicle_28.566") {
 
-        if (initialTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#5-AddedOffRampEdge") {
-            initialTime = simTime().dbl();
-            printf("============================ \n");
-            printf("%s Tempo ate o acidente %f \n", mVehicleController->getVehicleId().c_str(), initialTime);
-            printf("%f \n", mVehicleController->getPosition().x.value());
-            printf("============================ \n");
-        }
+    //     if (initialTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#5-AddedOffRampEdge") {
+    //         initialTime = simTime().dbl();
+    //         printf("============================ \n");
+    //         printf("%s Tempo ate o acidente %f \n", mVehicleController->getVehicleId().c_str(), initialTime);
+    //         printf("%f \n", mVehicleController->getPosition().x.value());
+    //         printf("============================ \n");
+    //     }
 
-        if (mVehicleController->getPosition().x.value() < 3332.97 && initialTime > -1) {
-            double travelTime = simTime().dbl();
-            travelTime = travelTime - initialTime;
-            initialTime = -1;
-            printf("============================ \n");
-            printf("%s Tempo ate o acidente %f \n", mVehicleController->getVehicleId().c_str(), travelTime);
-            printf("%f \n", mVehicleController->getPosition().x.value());
-            printf("============================ \n");
-        }
+    //     if (mVehicleController->getPosition().x.value() < 3332.97 && initialTime > -1) {
+    //         double travelTime = simTime().dbl();
+    //         travelTime = travelTime - initialTime;
+    //         initialTime = -1;
+    //         printf("============================ \n");
+    //         printf("%s Tempo ate o acidente %f \n", mVehicleController->getVehicleId().c_str(), travelTime);
+    //         printf("%f \n", mVehicleController->getPosition().x.value());
+    //         printf("============================ \n");
+    //     }
 
-        if (initialTime > -1){
-            printf("============================ \n");
-            printf("%f \n", mVehicleController->getPosition().x.value());
-            printf("============================ \n");
-        }
+    //     if (initialTime > -1){
+    //         printf("============================ \n");
+    //         printf("%f \n", mVehicleController->getPosition().x.value());
+    //         printf("============================ \n");
+    //     }
+    // }
 
     // } && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#7") {
     //     double speed = mVehicleController->getTraCI()->vehicle.getSpeed(mVehicleController->getVehicleId());
     //     printf("Speed %f \n", speed);
-    }
 
     // if (initialTime == -1 && mVehicleController->getVehicleId() == "vehicle_27.324") {
     //     std::vector<std::string> route = mVehicleController->getTraCI()->vehicle.getRoute(mVehicleController->getVehicleId());
@@ -210,9 +230,9 @@ void WarningService::receiveWarning(const WarningMessage* warningMessage) {
         for (struct Reputation vehicleRep: reputationTable) {
             std::string repVehicleId = vehicleRep.idVehicle.c_str();
             if (warVehicleId.compare(repVehicleId) == 0) {
-                printf("Veiculo na black list \n");
+                writeLog("Veiculo na black list");
                 if ((vehicleRep.reputation > 0.3) and (warningMessage->getAlertCriticality() == MAX)) {
-                    printf("Veiculo considerado suspeiro \n");
+                    writeLog("Veiculo considerado suspeiro");
                     mVehicleController->getTraCI()->vehicle.rerouteTraveltime(mVehicleController->getVehicleId());
                     mVehicleController->getTraCI()->vehicle.setColor(mVehicleController->getVehicleId(), libsumo::TraCIColor(0, 255, 255, 255));
                 }
@@ -224,54 +244,8 @@ void WarningService::receiveWarning(const WarningMessage* warningMessage) {
 
     // Se o veículo não esta na blacklist, é pq sua rep > 0.5
     if (blackList == false) {
-        printf("Nao esta na blacklist\n");
+        writeLog("Nao esta na blacklist");
         mVehicleController->getTraCI()->vehicle.rerouteTraveltime(mVehicleController->getVehicleId());
-        // std::vector<std::string> newRoute;
-
-        // newRoute.push_back("-31622#4 ");
-        // newRoute.push_back("-31622#4-AddedOffRampEdge ");
-        // newRoute.push_back("-31622#5 ");
-        // newRoute.push_back("-31622#5-AddedOffRampEdge ");
-        // newRoute.push_back("-31760 ");
-        // newRoute.push_back("-30706#3-AddedOnRampEdge ");
-        // newRoute.push_back("-30706#4 ");
-        // newRoute.push_back("-32798-AddedOnRampEdge ");
-        // newRoute.push_back("-32798 ");
-        // newRoute.push_back("-31876#1 ");
-        // newRoute.push_back("-31876#2 ");
-        // newRoute.push_back("-31340#0 ");
-        // newRoute.push_back("-31340#1 ");
-        // newRoute.push_back("-31340#2 ");
-        // newRoute.push_back("-31340#3 ");
-        // newRoute.push_back("-31340#4 ");
-        // newRoute.push_back("--31066#0 ");
-        // newRoute.push_back("-32914#1 ");
-        // newRoute.push_back("--30348#5 ");
-        // newRoute.push_back("--30348#4 ");
-        // newRoute.push_back("--30348#3 ");
-        // newRoute.push_back("--30348#2 ");
-        // newRoute.push_back("--30348#1 ");
-        // newRoute.push_back("--30348#0 ");
-        // newRoute.push_back("--30892#23 ");
-        // newRoute.push_back("--30892#22 ");
-        // newRoute.push_back("--30892#21 ");
-        // newRoute.push_back("--30892#20 ");
-        // newRoute.push_back("--30892#19 ");
-        // newRoute.push_back("--30892#18 ");
-        // newRoute.push_back("--30892#17 ");
-        // newRoute.push_back("-31272#7 ");
-        // newRoute.push_back("-31272#8 ");
-        // newRoute.push_back("-31690 ");
-        // newRoute.push_back("-32858#0 ");
-        // newRoute.push_back("-32858#1-AddedOnRampEdge ");
-        // newRoute.push_back("-32858#1 ");
-        // newRoute.push_back("-32858#1-AddedOffRampEdge ");
-        // newRoute.push_back("-32372#0 ");
-        // newRoute.push_back("-32372#1 ");
-        // newRoute.push_back("-32372#2 ");
-        // newRoute.push_back("-31622#10-AddedOnRampEdge ");
-
-        // mVehicleController->getTraCI()->vehicle.setRoute(mVehicleController->getVehicleId(), newRoute);
         mVehicleController->getTraCI()->vehicle.setColor(mVehicleController->getVehicleId(), libsumo::TraCIColor(0, 255, 255, 255));
     }
 
@@ -314,44 +288,18 @@ void WarningService::sendWarningValidationMessage(int messageType) {
 }
 
 void WarningService::interruptStreet() {
-    // std::vector<std::string> disallowedClasses;
-    // disallowedClasses.push_back("passenger");
-    // mVehicleController->getTraCI().lane().setDisallowed("--31834#1_0", disallowedClasses);
-    // mVehicleController->getTraCI().lane().setDisallowed("-31622#7_0", disallowedClasses);
-    // mVehicleController->getTraCI().lane().setDisallowed("-31622#7_1", disallowedClasses);
-    // mVehicleController->getTraCI().lane().setDisallowed("-31622#7_2", disallowedClasses);
+    std::vector<std::string> disallowedClasses;
+    disallowedClasses.push_back("passenger");
+    mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_0", disallowedClasses);
+    mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_1", disallowedClasses);
+    mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_3", disallowedClasses);
 
-    mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle1", "-31622#7", 0, 5032.97, 3527.49, 0, 1);
-    mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle2", "-31622#7", 1, 5032.97, 3527.49, 0, 1);
+    mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle1", "-31622#7", 0, 5550.81, 3391.58, 0, 1);
+    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle2", "-31622#7", 1, 5550.81, 3391.58, 0, 1);
     // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle3", "-31622#7", 2, 5032.97, 3527.49, 0, 1);
 
     mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle1", 0.0);
-    mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle2", 0.0);
-    // mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle3", 0.0);
-
-    // libsumo::TraCIPositionVector poli;
-    // libsumo::TraCIPosition p1;
-    // p1.x = 5233;
-    // p1.y = 3462;
-    // p1.z = 20;
-    // libsumo::TraCIPosition p2;
-    // p2.x = 5228;
-    // p2.y = 3452;
-    // p2.z = 20;
-    // libsumo::TraCIPosition p3;
-    // p3.x = 5236;
-    // p3.y = 3450;
-    // p3.z = 20;
-    // libsumo::TraCIPosition p4;
-    // p4.x = 5240;
-    // p4.y = 3461;
-    // p4.z = 20;
-    // poli.push_back(p1);
-    // poli.push_back(p2);
-    // poli.push_back(p3);
-    // poli.push_back(p4);
-
-    // mVehicleController->getTraCI().polygon().add("bloqueio", poli, libsumo::TraCIColor(0, 255, 255, 255), true, "building", 4.00);
+    // mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle2", 0.0);
 }
 
 void WarningService::sendPacket(omnetpp::cPacket* packet) {
@@ -371,12 +319,6 @@ void WarningService::sendPacket(omnetpp::cPacket* packet) {
 
     units::GeoAngle latitude {49.576090 * boost::units::degree::degree};
     units::GeoAngle longitude {6.145842 * boost::units::degree::degree};
-
-
-    EV_INFO << "==================" << endl;
-    EV_INFO << latitude.value() << endl;
-    EV_INFO << longitude.value() << endl;
-    EV_INFO << "==================" << endl;
 
     area.position.latitude = latitude;
     area.position.longitude = longitude;
@@ -414,10 +356,10 @@ void WarningService::receiveSignal(omnetpp::cComponent*, omnetpp::simsignal_t si
     if (sig == storyboardSignal) {
         auto storysig = dynamic_cast<artery::StoryboardSignal*>(sigobj);
         if (storysig && storysig->getCause() == "stop") {
-            printf("Recebeu STOP \n");
+            writeLog("Recebeu STOP");
             interruptStreet();
         } else if (storysig && storysig->getCause() == "scenario_1") {
-            printf("Recebeu Scenario 1 \n");
+            writeLog("Recebeu Scenario 1");
             const std::string id = mVehicleController->getVehicleId();
             auto& vehicle_api = mVehicleController->getTraCI()->vehicle;
 

@@ -1,18 +1,22 @@
-***Starting server on port 52753 ***
+***Starting server on port 37849 ***
 Loading net-file from 'maps/luxembourg/lust2.net.xml' ... done (35ms).
 Loading additional-files from 'maps/luxembourg/vtypes.add.xml' ... done (0ms).
 Loading done.
 Simulation started with time: 0.00
-Simulation ended at time: 23.00
-Reason: TraCI requested termination.
+Warning: Route file should be sorted by departure time, ignoring 'vehicle_2.86'!
+Simulation ended at time: 592.00
 Performance: 
- Duration: 7.91s
- Real time factor: 2.90624
- UPS: 52.312358
+ Duration: 290.22s
+ Real time factor: 2.03987
+ UPS: 339.655083
 Vehicles: 
- Inserted: 36 (Loaded: 337)
- Running: 36
- Waiting: 3
+ Inserted: 412 (Loaded: 421)
+ Running: 269
+ Waiting: 1
 
-DijkstraRouter answered 41 queries and explored 47.27 edges on average.
-DijkstraRouter spent 0.00s answering queries (0.02ms on average).
+DijkstraRouter answered 18 queries and explored 79.22 edges on average.
+DijkstraRouter spent 0.00s answering queries (0.11ms on average).
+DijkstraRouter answered 2 queries and explored 81.50 edges on average.
+DijkstraRouter spent 0.00s answering queries (0.00ms on average).
+DijkstraRouter answered 11 queries and explored 79.45 edges on average.
+DijkstraRouter spent 0.00s answering queries (0.18ms on average).
