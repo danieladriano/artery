@@ -13,8 +13,8 @@
 #include <artery/application/StoryboardSignal.h>
 #include <string.h>
 #include <iostream>
-// #include <Math.h>
-
+#include "artery/utility/Geometry.h"
+    
 using namespace omnetpp;
 using namespace vanetza;
 
@@ -23,9 +23,8 @@ Define_Module(RsuWarningService)
 
 void RsuWarningService::initialize(){
     ItsG5BaseService::initialize();
-    
     // mIdentity = &getFacilities().get_const<Identity>();
-    // const double mGeoPosition = &getFacilities().get_const<GeoPosition>()->latitude;
+    // mGeoPosition = &getFacilities().get_const<GeoPosition>();
 
     // Somente para testar o recebimento do OBUBeacon e envio da possivel tabela
     lastUpdateTable = 10;
@@ -40,6 +39,8 @@ void RsuWarningService::initialize(){
 
     m_resend_warning_message = new cMessage("ResendWarningMessage");
     scheduleAt(simTime() + 10, m_resend_warning_message);
+
+    wmSignal = registerSignal("warning");
 }
 
 void RsuWarningService::trigger() {
@@ -54,12 +55,10 @@ void RsuWarningService::indicate(const vanetza::btp::DataIndication& ind, omnetp
     } else if (WarningValidationMessage* validation = dynamic_cast<WarningValidationMessage*>(packet)) {
         receiveValidationMessage(validation);
     } else if (WarningMessage* warningMessage = dynamic_cast<WarningMessage*>(packet)) {
-        printf("====================== \n");
-        printf("RSU Recebeu WarningMessage \n");
-        printf("====================== \n");
         if (!received) {
             received = true;
             receiveWarning(warningMessage);
+            emit(wmSignal, 1);
         }
     }
 
@@ -85,8 +84,6 @@ void RsuWarningService::handleMessage(cMessage* msg) {
 }
 
 void RsuWarningService::sendUpdateTableMessage() {
-    // printf("Send New Table\n");
-
     auto tableMessage = new UpdateTableMessage();
     tableMessage->setIdRsu("RSU1");
     tableMessage->setReputationTableArraySize(50);
@@ -189,6 +186,8 @@ void RsuWarningService::sendPacket(omnetpp::cPacket* packet) {
 
     units::GeoAngle latitude {49.575947 * boost::units::degree::degree};
     units::GeoAngle longitude {6.145914 * boost::units::degree::degree};
+
+    // units::GeoAngle latitude = mVehi
 
     area.position.latitude = latitude;
     area.position.longitude = longitude;

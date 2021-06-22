@@ -23,17 +23,25 @@ class WarningService: public artery::ItsG5Service {
         bool received = false;
         bool inside = false;
         bool obuBeacon = false;
-        double initialTime = -1;
+
         double lastUpdateTable = -1;
+        double initialTravelTime = -1;
+        bool changeRoute = false;
+
         std::vector<struct Reputation> reputationTable;
         int lastAlertId = -1;
         int lastAlertCriticality = -1;
         bool withReputation = true;
 
         traci::VehicleController* mVehicleController = nullptr;
-        omnetpp::simsignal_t auxTravelTime;
+        omnetpp::simsignal_t mainTravelTimeSignal;
+        omnetpp::simsignal_t auxTravelTimeSignal;
+        omnetpp::simsignal_t changeRouteSignal;
+        omnetpp::simsignal_t receivedWMSignal;
+
+        // omnetpp::simsignal_t mainTravelTime;
+        // omnetpp::simsignal_t auxTravelTime;
         // omnetpp::simsignal_t successSignal;
-        // omnetpp::simsignal_t delaySignal;
         // omnetpp::simsignal_t distanceSignal;
         // omnetpp::simsignal_t duplicateSignal;
         // omnetpp::simsignal_t insideSignal;
@@ -49,6 +57,7 @@ class WarningService: public artery::ItsG5Service {
         void receiveTable(const UpdateTableMessage*);
         void receiveWarning(const WarningMessage*);
         void writeLog(std::string);
+        bool isVehicleInValidEdge();
 };
 
 #endif /* WARNINGSERVICE_H_ */

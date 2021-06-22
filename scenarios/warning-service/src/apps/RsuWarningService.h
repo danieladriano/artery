@@ -5,7 +5,10 @@
 #include "warning_msgs/OBUBeacon_m.h"
 #include "warning_msgs/WarningValidationMessage_m.h"
 #include "warning_msgs/WarningMessage_m.h"
+#include "artery/utility/Geometry.h"
 
+class GeoPosition;
+// class Identity;
 
 class RsuWarningService: public artery::ItsG5Service {
     protected:
@@ -24,8 +27,9 @@ class RsuWarningService: public artery::ItsG5Service {
         bool withReputation = true;
 
         // const Identity* mIdentity = nullptr;
-        // GeoPositon rsuGeoPosition;
+        // const GeoPosition* mGeoPosition = nullptr;
 
+        omnetpp::simsignal_t wmSignal;
 
         double lastUpdateTable = -1;
         void receiveObuBeacon(const OBUBeacon*);

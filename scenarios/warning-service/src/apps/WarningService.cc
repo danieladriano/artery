@@ -35,9 +35,16 @@ void WarningService::initialize() {
     // withReputation = par("withReputation");
 
     withReputation = false;
-    auxTravelTime = registerSignal("auxTravelTime");
+    mainTravelTimeSignal = registerSignal("mTravelTime");
+    auxTravelTimeSignal = registerSignal("aTravelTime");
+    changeRouteSignal = registerSignal("change");
+    receivedWMSignal = registerSignal("receivedWM");
+
+    received = true;
+
+    // auxTravelTime = registerSignal("aTravelTime");
+    // mainTravelTime = registerSignal("mTravelTime");
     // successSignal = registerSignal("successSignal");
-    // delaySignal = registerSignal("delaySignal");
     // distanceSignal = registerSignal("distanceSignal");
     // duplicateSignal = registerSignal("duplicateSignal");
     // insideSignal = registerSignal("insideSignal");
@@ -62,7 +69,7 @@ inline string getCurrentDateTime( string s ){
 void WarningService::writeLog(string message){
     ofstream logFile("./logs/warning_log_" + getCurrentDateTime("date") + ".txt", std::ios_base::out | std::ios_base::app);
     string now = getCurrentDateTime("now");
-    logFile << now << '\t' << message << endl;
+    logFile << now << '\t' << simTime().str() << '\t' << message << endl;
     logFile.close();
 }
 
@@ -90,17 +97,48 @@ void WarningService::sendObuBeacon() {
 void WarningService::trigger() {
     Enter_Method("WarningService trigger");
 
-    if (received && initialTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31760") {
-        initialTime = simTime().dbl();
-        writeLog(string("Alterou trajeto\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(initialTime));
+    // Inicia contador do inicio do trajeto
+    if (initialTravelTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#4.5157") {
+        initialTravelTime = simTime().dbl();
     }
-    if (received && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#10-AddedOnRampEdge" && initialTime > 0) {
+
+    // Caso veiculo tenha recebido mensagem de alerta e esteja na rampa de saida, quer dizer que alterou trajeto
+    if (received && changeRoute == false && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31760") {
+        changeRoute = true;
+        emit(changeRouteSignal, 1);
+        writeLog(string("Alterou trajeto\t") + mVehicleController->getVehicleId().c_str());
+    }
+
+    if (received && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#10-AddedOnRampEdge" && initialTravelTime > 0) {
         double travelTime = simTime().dbl();
-        travelTime = travelTime - initialTime;
-        initialTime = -1;
-        emit(auxTravelTime, travelTime);
-        writeLog(string("TravelTime\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(travelTime));
+        travelTime = travelTime - initialTravelTime;
+        initialTravelTime = -1;
+        received = false;
+
+        if (changeRoute){
+            emit(auxTravelTimeSignal, travelTime);
+            writeLog(string("Aux TravelTime\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(travelTime));
+        } else {
+            emit(mainTravelTimeSignal, travelTime);
+            writeLog(string("Main TravelTime\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(travelTime));
+        }
     }
+
+    // if (received && auxInitialTime == -1 && mainInitialTime == -1) {
+    //     mainInitialTime = simTime().dbl();
+    //     emit(didntChangeRouteSignal, 1);
+    //     writeLog(string("Não alterou trajeto\t") + mVehicleController->getVehicleId().c_str() + "\t" + to_string(mainInitialTime));
+    // }
+    // if (received && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#10-AddedOnRampEdge" && mainInitialTime > 0) {
+    //     double travelTime = simTime().dbl();
+    //     travelTime = travelTime - mainInitialTime;
+    //     mainInitialTime = -1;
+    //     received = false;
+    //     emit(mainTravelTimeSignal, travelTime);
+        
+    // }
+
+
     if (withReputation) {
         if ((obuBeacon == false) and (simTime() >= 330) and (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#4") and (mVehicleController->getPosition().x.value() < 8600)) {
             m_obu_beacon = new cMessage("OBUBeacon");
@@ -192,11 +230,24 @@ long double WarningService::geoDistance(long double lat1, long double long1, lon
     return ans * 1000;
 }
 
+bool WarningService::isVehicleInValidEdge(){
+    if (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#7" &&
+        mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#7-AddedOffRampEdge" &&
+        mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#8" &&
+        mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#8-AddedOffRampEdge" &&
+        mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#9" &&
+        mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#10-AddedOnRampEdge" &&
+        mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) != "-31622#10") {
+        return true;
+    }
+    return false;
+}
+
 void WarningService::indicate(const vanetza::btp::DataIndication& ind, omnetpp::cPacket* packet) {
     Enter_Method("WarningService indicate");
 
     if (WarningMessage* warningMessage = dynamic_cast<WarningMessage*>(packet)) {
-        if (!received) {
+        if (!received && isVehicleInValidEdge()) {
             received = true;
             receiveWarning(warningMessage);
         }
@@ -245,21 +296,87 @@ void WarningService::receiveWarning(const WarningMessage* warningMessage) {
     // Se o veículo não esta na blacklist, é pq sua rep > 0.5
     if (blackList == false) {
         writeLog("Nao esta na blacklist");
-        mVehicleController->getTraCI()->vehicle.rerouteTraveltime(mVehicleController->getVehicleId());
+        // mVehicleController->getTraCI()->vehicle.rerouteTraveltime(mVehicleController->getVehicleId());
         mVehicleController->getTraCI()->vehicle.setColor(mVehicleController->getVehicleId(), libsumo::TraCIColor(0, 255, 255, 255));
+
+        std::vector<std::string> edges;
+        bool change = false;
+
+        if (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#4.5157"){
+            edges.push_back("-31622#4.5157");
+            edges.push_back("-31622#4-AddedOffRampEdge");
+            edges.push_back("-31622#5");
+            edges.push_back("-31622#5-AddedOffRampEdge");
+            change = true;
+        } else if (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#4-AddedOffRampEdge"){
+            edges.push_back("-31622#4-AddedOffRampEdge");
+            edges.push_back("-31622#5");
+            edges.push_back("-31622#5-AddedOffRampEdge");
+            change = true;
+        } else if (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#5"){
+            edges.push_back("-31622#5");
+            edges.push_back("-31622#5-AddedOffRampEdge");
+            change = true;
+        } else if (mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#5-AddedOffRampEdge"){
+            edges.push_back("-31622#5-AddedOffRampEdge");
+            change = true;
+        }
+
+        if (change){
+            edges.push_back("-31760");
+            edges.push_back("-30706#3-AddedOnRampEdge");
+            edges.push_back("-30706#4");
+            edges.push_back("-32798-AddedOnRampEdge");
+            edges.push_back("-32798");
+            edges.push_back("-31876#1");
+            edges.push_back("-31876#2");
+            edges.push_back("-31340#0");
+            edges.push_back("-31340#1");
+            edges.push_back("-31340#2");
+            edges.push_back("-31340#3");
+            edges.push_back("-31340#4");
+            edges.push_back("--31066#0");
+            edges.push_back("-32914#1");
+            edges.push_back("--30348#5");
+            edges.push_back("--30348#4");
+            edges.push_back("--30348#3");
+            edges.push_back("--30348#2");
+            edges.push_back("--30348#1");
+            edges.push_back("--30348#0");
+            edges.push_back("--30892#23");
+            edges.push_back("--30892#22");
+            edges.push_back("--30892#21");
+            edges.push_back("--30892#20");
+            edges.push_back("--30892#19");
+            edges.push_back("--30892#18");
+            edges.push_back("--30892#17");
+            edges.push_back("-31272#7");
+            edges.push_back("-31272#8");
+            edges.push_back("-31690");
+            edges.push_back("-32858#0");
+            edges.push_back("-32858#1-AddedOnRampEdge");
+            edges.push_back("-32858#1");
+            edges.push_back("-32858#1-AddedOffRampEdge");
+            edges.push_back("-32372#0");
+            edges.push_back("-32372#1");
+            edges.push_back("-32372#2");
+            edges.push_back("-31622#10-AddedOnRampEdge");
+            mVehicleController->getTraCI()->vehicle.setRoute(mVehicleController->getVehicleId(), edges);
+        }
+
+        // std::vector<std::string> route = mVehicleController->getTraCI()->vehicle.getRoute(mVehicleController->getVehicleId());
+        // string strRoute = "";
+        // for (string x: route){
+        //     strRoute += x + " | ";
+        // }
+        // writeLog(strRoute);
     }
 
-    // ================================= 
-    // Verifica se o veiculo emissor esta na black list
-    // Verificar fluxograma
-    // =================================    
+    emit(receivedWMSignal, 1);
 
-    // long delayTime = simTime().dbl() - warningMessage->getTimeStamp();
     // artery::Position messagePosition (warningMessage->getX(), warningMessage->getY());
     // artery::Position::value_type totalDistance;
     // totalDistance = distance(mVehicleController->getPosition(), messagePosition);
-    // emit(successSignal, 1);
-    // emit(delaySignal, delayTime);
     // emit(distanceSignal, (long) totalDistance.value());
 }
 
@@ -288,18 +405,22 @@ void WarningService::sendWarningValidationMessage(int messageType) {
 }
 
 void WarningService::interruptStreet() {
-    std::vector<std::string> disallowedClasses;
-    disallowedClasses.push_back("passenger");
-    mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_0", disallowedClasses);
-    mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_1", disallowedClasses);
-    mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_3", disallowedClasses);
+    // std::vector<std::string> disallowedClasses;
+    // disallowedClasses.push_back("passenger");
+    // mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_0", disallowedClasses);
+    // mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_1", disallowedClasses);
+    // mVehicleController->getTraCI()->lane.setDisallowed("-31622#7-AddedOnRampEdge_3", disallowedClasses);
 
-    mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle1", "-31622#7", 0, 5550.81, 3391.58, 0, 1);
-    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle2", "-31622#7", 1, 5550.81, 3391.58, 0, 1);
-    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle3", "-31622#7", 2, 5032.97, 3527.49, 0, 1);
+    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle1", "-31622#7", 0, 5550.81, 3391.58, 0, 1);
+    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle2", "-31622#7", 0, 5550.81, 3391.58, 0, 1);
+    // 5616.19,3381.93
+    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle1", "-31622#7-AddedOnRampEdge", 1, 5616.19, 3381.93, 0, 1);
+    // mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle2", "-31622#7-AddedOnRampEdge", 3, 5616.19, 3381.93, 0, 1);
 
+    mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle1", "-31622#7-AddedOnRampEdge", 1, 5616.19, 3386.30, 0, 1);
     mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle1", 0.0);
-    // mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle2", 0.0);
+    mVehicleController->getTraCI()->vehicle.moveToXY("brokenVehicle2", "-31622#7-AddedOnRampEdge", 3, 5596.19, 3381.57, 0, 1);
+    mVehicleController->getTraCI()->vehicle.setSpeed("brokenVehicle2", 0.0);
 }
 
 void WarningService::sendPacket(omnetpp::cPacket* packet) {
@@ -338,9 +459,10 @@ void WarningService::sendPacket2(omnetpp::cPacket* packet, units::GeoAngle latit
     geonet::Area area;
     area.shape = geonet::Circle();
 
-    using units::si::meters;
+    using vanetza::units::si::meter;
     geonet::Circle destination_shape;
-    destination_shape.r = 500 * meters; // A DEFINIR
+    // O protocolo em si não permite mais de 1 mil metros... Alterado para permitir itsGnMaxGeoAreaSize
+    destination_shape.r = 2500 * meter; // A DEFINIR
     area.shape = destination_shape;
 
     area.position.latitude = latitude;
@@ -372,7 +494,9 @@ void WarningService::receiveSignal(omnetpp::cComponent*, omnetpp::simsignal_t si
             packet->setX(mVehicleController->getPosition().x.value());
             packet->setY(mVehicleController->getPosition().y.value());
 
-            sendPacket(packet);
+            sendPacket2(packet, 
+                        mVehicleController->getGeoPosition().latitude.value() * boost::units::degree::degree,
+                        mVehicleController->getGeoPosition().longitude.value() * boost::units::degree::degree);
         } else if (storysig && storysig->getCause() == "propagate") {
             const std::string id = mVehicleController->getVehicleId();
             auto& vehicle_api = mVehicleController->getTraCI()->vehicle;
