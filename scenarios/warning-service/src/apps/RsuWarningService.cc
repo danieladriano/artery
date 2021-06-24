@@ -38,7 +38,6 @@ void RsuWarningService::initialize(){
     }
 
     m_resend_warning_message = new cMessage("ResendWarningMessage");
-    scheduleAt(simTime() + 10, m_resend_warning_message);
 
     wmSignal = registerSignal("warning");
 }
@@ -127,6 +126,8 @@ void RsuWarningService::receiveWarning(const WarningMessage* warningMesg) {
     warningMessage->setTimeStamp(warningMesg->getTimeStamp());
     warningMessage->setX(warningMesg->getX());
     warningMessage->setY(warningMesg->getY());
+
+    scheduleAt(simTime() + 15, m_resend_warning_message);
 }
 
 void RsuWarningService::resendWarningMessage(){
@@ -141,7 +142,7 @@ void RsuWarningService::resendWarningMessage(){
         packet->setY(warningMessage.getY());
         
         sendPacket(packet);
-        scheduleAt(simTime() + 20, m_resend_warning_message);
+        scheduleAt(simTime() + 15, m_resend_warning_message);
     }
 }
 
@@ -172,27 +173,27 @@ void RsuWarningService::sendPacket(omnetpp::cPacket* packet) {
 
     btp::DataRequestB req;
     req.destination_port = host_cast<RsuWarningService::port_type>(getPortNumber());
-    req.gn.transport_type = geonet::TransportType::GBC;
+    req.gn.transport_type = geonet::TransportType::SHB;
     req.gn.traffic_class.tc_id(static_cast<unsigned>(dcc::Profile::DP1));
     req.gn.communication_profile = geonet::CommunicationProfile::ITS_G5;
 
-    geonet::Area area;
-    area.shape = geonet::Circle();
+    // geonet::Area area;
+    // area.shape = geonet::Circle();
 
-    using units::si::meters;
-    geonet::Circle destination_shape;
-    destination_shape.r = 300 * meters; // A DEFINIR
-    area.shape = destination_shape;
+    // using units::si::meters;
+    // geonet::Circle destination_shape;
+    // destination_shape.r = 300 * meters; // A DEFINIR
+    // area.shape = destination_shape;
 
-    units::GeoAngle latitude {49.575947 * boost::units::degree::degree};
-    units::GeoAngle longitude {6.145914 * boost::units::degree::degree};
+    // units::GeoAngle latitude {49.575947 * boost::units::degree::degree};
+    // units::GeoAngle longitude {6.145914 * boost::units::degree::degree};
 
     // units::GeoAngle latitude = mVehi
 
-    area.position.latitude = latitude;
-    area.position.longitude = longitude;
-    req.gn.destination = area;
-    req.gn.maximum_hop_limit = 100; // A DEFINIR
+    // area.position.latitude = latitude;
+    // area.position.longitude = longitude;
+    // req.gn.destination = area;
+    // req.gn.maximum_hop_limit = 100; // A DEFINIR
 
     request(req, packet);
 }
