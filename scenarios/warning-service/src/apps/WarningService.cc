@@ -40,7 +40,10 @@ void WarningService::initialize() {
     changeRouteSignal = registerSignal("change");
     receivedWMSignal = registerSignal("receivedWM");
 
-    received = true;
+    totalVehiclesSignal = registerSignal("totalVehicles");
+    totalVehiclesHighwaySignal = registerSignal("totalVehiclesHighway");
+
+    emit(totalVehiclesSignal, 1);
 
     // auxTravelTime = registerSignal("aTravelTime");
     // mainTravelTime = registerSignal("mTravelTime");
@@ -100,6 +103,7 @@ void WarningService::trigger() {
     // Inicia contador do inicio do trajeto
     if (initialTravelTime == -1 && mVehicleController->getTraCI()->vehicle.getRoadID(mVehicleController->getVehicleId()) == "-31622#4.5157") {
         initialTravelTime = simTime().dbl();
+        emit(totalVehiclesHighwaySignal, 1);
     }
 
     // Caso veiculo tenha recebido mensagem de alerta e esteja na rampa de saida, quer dizer que alterou trajeto

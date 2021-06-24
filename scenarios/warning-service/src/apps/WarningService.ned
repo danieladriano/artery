@@ -13,4 +13,10 @@ simple WarningService like ItsG5Service {
 
         @signal[receivedWM](type="long");
         @statistic[receivedWarningMessage](title="Received Warning Message"; source="receivedWM"; record=vector; interpolationmode=none);
+
+        @signal[totalVehicles](type="long");
+        @statistic[totalVehicles](title="Total vehicles"; source="totalVehicles"; record=vector; interpolationmode=none);
+
+        @signal[totalVehiclesHighwaySignal](type="long");
+        @statistic[totalVehiclesHighwaySignal](title="Total vehicles highway"; source="totalVehiclesHighwaySignal"; record=vector; interpolationmode=none);
 }

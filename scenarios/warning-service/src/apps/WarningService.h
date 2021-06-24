@@ -39,6 +39,9 @@ class WarningService: public artery::ItsG5Service {
         omnetpp::simsignal_t changeRouteSignal;
         omnetpp::simsignal_t receivedWMSignal;
 
+        omnetpp::simsignal_t totalVehiclesSignal;
+        omnetpp::simsignal_t totalVehiclesHighwaySignal;
+
         // omnetpp::simsignal_t mainTravelTime;
         // omnetpp::simsignal_t auxTravelTime;
         // omnetpp::simsignal_t successSignal;
