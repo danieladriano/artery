@@ -22,7 +22,6 @@ class WarningService: public artery::ItsG5Service {
     private:
         bool received = false;
         bool inside = false;
-        bool obuBeacon = false;
 
         double lastUpdateTable = -1;
         double initialTravelTime = -1;
@@ -42,14 +41,6 @@ class WarningService: public artery::ItsG5Service {
         omnetpp::simsignal_t totalVehiclesSignal;
         omnetpp::simsignal_t totalVehiclesHighwaySignal;
 
-        // omnetpp::simsignal_t mainTravelTime;
-        // omnetpp::simsignal_t auxTravelTime;
-        // omnetpp::simsignal_t successSignal;
-        // omnetpp::simsignal_t distanceSignal;
-        // omnetpp::simsignal_t duplicateSignal;
-        // omnetpp::simsignal_t insideSignal;
-        // omnetpp::simsignal_t outSignal;
-
         void interruptStreet();
         void sendPacket(omnetpp::cPacket*);
         void sendPacket2(omnetpp::cPacket*, vanetza::units::GeoAngle, vanetza::units::GeoAngle);
@@ -61,6 +52,7 @@ class WarningService: public artery::ItsG5Service {
         void receiveWarning(const WarningMessage*);
         void writeLog(std::string);
         bool isVehicleInValidEdge();
+        void changeVehicleRoute();
 };
 
 #endif /* WARNINGSERVICE_H_ */

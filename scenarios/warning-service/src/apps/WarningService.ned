@@ -2,6 +2,8 @@ import artery.application.ItsG5Service;
 
 simple WarningService like ItsG5Service {
     parameters:
+        bool withReputation = default(false);
+
         @signal[mTravelTime](type="long");
         @statistic[mainTravelTime](title="Main Travel Time"; source="mTravelTime"; record=vector,stats; interpolationmode=none);
 
@@ -14,9 +16,9 @@ simple WarningService like ItsG5Service {
         @signal[receivedWM](type="long");
         @statistic[receivedWarningMessage](title="Received Warning Message"; source="receivedWM"; record=vector; interpolationmode=none);
 
-        @signal[totalVehicles](type="long");
-        @statistic[totalVehicles](title="Total vehicles"; source="totalVehicles"; record=vector; interpolationmode=none);
+        @signal[totalVehiclesS](type="long");
+        @statistic[totalVehiclesSim](title="Total vehicles"; source="totalVehiclesS"; record=vector; interpolationmode=none);
 
-        @signal[totalVehiclesHighwaySignal](type="long");
-        @statistic[totalVehiclesHighwaySignal](title="Total vehicles highway"; source="totalVehiclesHighwaySignal"; record=vector; interpolationmode=none);
+        @signal[totalVehiclesHighway](type="long");
+        @statistic[totalVehiclesHighwaySim](title="Total vehicles highway"; source="totalVehiclesHighway"; record=vector; interpolationmode=none);
 }

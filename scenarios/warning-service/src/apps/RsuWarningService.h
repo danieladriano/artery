@@ -30,6 +30,7 @@ class RsuWarningService: public artery::ItsG5Service {
         // const GeoPosition* mGeoPosition = nullptr;
 
         omnetpp::simsignal_t wmSignal;
+        omnetpp::simsignal_t beaconSignal;
 
         double lastUpdateTable = -1;
         void receiveObuBeacon(const OBUBeacon*);

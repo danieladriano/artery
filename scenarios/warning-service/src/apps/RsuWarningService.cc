@@ -29,17 +29,17 @@ void RsuWarningService::initialize(){
     // Somente para testar o recebimento do OBUBeacon e envio da possivel tabela
     lastUpdateTable = 10;
 
-    // withReputation = par("withReputation");
-    withReputation = false;
+    withReputation = par("withReputation");
 
     if (withReputation) {
         m_update_blockchain = new cMessage("UpdateBlockChain");
-        scheduleAt(simTime() + 20, m_update_blockchain);
+        scheduleAt(simTime() + 60, m_update_blockchain);
     }
 
     m_resend_warning_message = new cMessage("ResendWarningMessage");
 
     wmSignal = registerSignal("warning");
+    beaconSignal = registerSignal("beacon");
 }
 
 void RsuWarningService::trigger() {
@@ -51,6 +51,7 @@ void RsuWarningService::indicate(const vanetza::btp::DataIndication& ind, omnetp
 
     if (OBUBeacon* obuBeacon = dynamic_cast<OBUBeacon*>(packet)) {
         receiveObuBeacon(obuBeacon);
+        emit(beaconSignal, 1);
     } else if (WarningValidationMessage* validation = dynamic_cast<WarningValidationMessage*>(packet)) {
         receiveValidationMessage(validation);
     } else if (WarningMessage* warningMessage = dynamic_cast<WarningMessage*>(packet)) {
@@ -91,7 +92,7 @@ void RsuWarningService::sendUpdateTableMessage() {
         struct Reputation rep;
         rep.idVehicle = "brokenVehicle1";
         rep.reputation = 0.4;
-        tableMessage->setReputationTable(i, rep);        
+        tableMessage->setReputationTable(i, rep);
     }
     tableMessage->setTableTime(lastUpdateTable);
 
@@ -160,7 +161,7 @@ void RsuWarningService::calcReputation() {
         float repAct = 0;
         float repNew = (repAct + repAct * rsuFeed) / 2;
     }
-    scheduleAt(simTime() + 20, m_update_blockchain);
+    scheduleAt(simTime() + 60, m_update_blockchain);
 }
 
 void RsuWarningService::finish() {
